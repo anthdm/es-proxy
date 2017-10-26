@@ -26,6 +26,7 @@ func NewEsProxy(target *url.URL) *EsProxy {
 }
 
 func (proxy *EsProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.Host)
+	log.Println(r.RemoteAddr)
+	log.Println(r.Header)
 	proxy.p.ServeHTTP(w, r)
 }
