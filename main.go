@@ -32,9 +32,5 @@ func NewEsProxy(target *url.URL, id string) *EsProxy {
 }
 
 func (proxy *EsProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if len(r.Header["X-Newrelic-Id"]) > 0 && r.Header["X-Newrelic-Id"][0] == proxy.newRelicID {
-		proxy.p.ServeHTTP(w, r)
-		return
-	}
-	http.Error(w, "Not authorized", 403)
+	proxy.p.ServeHTTP(w, r)
 }
